@@ -65,7 +65,7 @@ class Game {
         const input = numbers[counter];
 
         const number = Number(input);
-        if (input === "-") {
+        if (number === 0) {
           this.setCell({ x: i, y: j }, null);
         } else if (Number.isNaN(number)) {
           console.log("invaid number detected");

@@ -225,10 +225,10 @@ const fillBoard = async (params: Params) => {
     const topHouseValues = boardSetToExistingNumberArray(topHouse);
     const bottomHouseValues = boardSetToExistingNumberArray(bottomHouse);
 
-    console.log("topHouseValues");
-    console.log(topHouseValues);
-    console.log("bottomHouseValues");
-    console.log(bottomHouseValues);
+    // console.log("topHouseValues");
+    // console.log(topHouseValues);
+    // console.log("bottomHouseValues");
+    // console.log(bottomHouseValues);
 
     // create base group, group of all numbers still not included in column 4
 
@@ -238,24 +238,24 @@ const fillBoard = async (params: Params) => {
 
     baseGroup = baseGroup.filter((value) => !toDeductFromBaseGroup.includes(value));
 
-    console.log("baseGroup");
-    console.log(baseGroup);
+    // console.log("baseGroup");
+    // console.log(baseGroup);
 
     // top group is base group with only numbers that have to be in top house
     let topGroup = baseGroup.filter((value) => bottomHouseValues.includes(value));
     let bottomGroup = baseGroup.filter((value) => topHouseValues.includes(value));
 
-    console.log("topGroup");
-    console.log(topGroup);
-    console.log("bottomGroup");
-    console.log(bottomGroup);
+    // console.log("topGroup");
+    // console.log(topGroup);
+    // console.log("bottomGroup");
+    // console.log(bottomGroup);
 
     let leftoverGroup = baseGroup
       .filter((v) => !topGroup.includes(v))
       .filter((v) => !bottomGroup.includes(v));
 
-    console.log("leftoverGroup");
-    console.log(leftoverGroup);
+    // console.log("leftoverGroup");
+    // console.log(leftoverGroup);
 
     // now add all leftover numbers randomly to top and
     // bottom group until they're both of length 3
@@ -266,13 +266,13 @@ const fillBoard = async (params: Params) => {
       topGroup.push(value);
     }
 
-    console.log("newTopGroup");
-    console.log(topGroup);
+    // console.log("newTopGroup");
+    // console.log(topGroup);
 
     bottomGroup = bottomGroup.concat(leftoverGroup);
 
-    console.log("newBottomGroup");
-    console.log(bottomGroup);
+    // console.log("newBottomGroup");
+    // console.log(bottomGroup);
 
     // inject top group to middle row of top house and vice-versa
 
@@ -297,10 +297,10 @@ const fillBoard = async (params: Params) => {
     const topHouseValues = boardSetToExistingNumberArray(topHouse);
     const bottomHouseValues = boardSetToExistingNumberArray(bottomHouse);
 
-    console.log("topHouseValues");
-    console.log(topHouseValues);
-    console.log("bottomHouseValues");
-    console.log(bottomHouseValues);
+    // console.log("topHouseValues");
+    // console.log(topHouseValues);
+    // console.log("bottomHouseValues");
+    // console.log(bottomHouseValues);
 
     // create base group, group of all numbers still not included in column 4
 
@@ -310,24 +310,24 @@ const fillBoard = async (params: Params) => {
 
     baseGroup = baseGroup.filter((value) => !toDeductFromBaseGroup.includes(value));
 
-    console.log("baseGroup");
-    console.log(baseGroup);
+    // console.log("baseGroup");
+    // console.log(baseGroup);
 
     // top group is base group with only numbers that have to be in top house
     let topGroup = baseGroup.filter((value) => bottomHouseValues.includes(value));
     let bottomGroup = baseGroup.filter((value) => topHouseValues.includes(value));
 
-    console.log("topGroup");
-    console.log(topGroup);
-    console.log("bottomGroup");
-    console.log(bottomGroup);
+    // console.log("topGroup");
+    // console.log(topGroup);
+    // console.log("bottomGroup");
+    // console.log(bottomGroup);
 
     let leftoverGroup = baseGroup
       .filter((v) => !topGroup.includes(v))
       .filter((v) => !bottomGroup.includes(v));
 
-    console.log("leftoverGroup");
-    console.log(leftoverGroup);
+    // console.log("leftoverGroup");
+    // console.log(leftoverGroup);
 
     // now add all leftover numbers randomly to top and
     // bottom group until they're both of length 3
@@ -338,13 +338,13 @@ const fillBoard = async (params: Params) => {
       topGroup.push(value);
     }
 
-    console.log("newTopGroup");
-    console.log(topGroup);
+    // console.log("newTopGroup");
+    // console.log(topGroup);
 
     bottomGroup = bottomGroup.concat(leftoverGroup);
 
-    console.log("newBottomGroup");
-    console.log(bottomGroup);
+    // console.log("newBottomGroup");
+    // console.log(bottomGroup);
 
     // inject top group to middle row of top house and vice-versa
 
@@ -374,12 +374,12 @@ const fillBoard = async (params: Params) => {
   // getValidValuesInCell(game, { x: 0, y: 0 });
   const validValuesInHouse = getValidValuesInHouse(game);
 
-  console.log("validValuesInHouse");
-  console.log(validValuesInHouse);
+  // console.log("validValuesInHouse");
+  // console.log(validValuesInHouse);
 
-  console.log("stage 3");
+  // console.log("stage 3");
 
-  console.log("stage 3 for bottom left house");
+  // console.log("stage 3 for bottom left house");
 
   setCornerHouseWithRepeat(game, 0, 0, 4);
 

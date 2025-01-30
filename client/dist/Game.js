@@ -63,7 +63,7 @@ class Game {
             for (let j = 0; j < 9; j++) {
                 const input = numbers[counter];
                 const number = Number(input);
-                if (input === "-") {
+                if (number === 0) {
                     this.setCell({ x: i, y: j }, null);
                 }
                 else if (Number.isNaN(number)) {

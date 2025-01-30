@@ -87,9 +87,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const canvasBoard = new CanvasBoard(ctx, canvasBoardParams);
     const game = new Game();
     yield game.init();
-    // game.setBoard(
-    //   "-91286574487--9126-52-14-398754--692213--7-85--452871---96-3-5-538142-6--26--5--1"
-    // );
+    game.setBoard("091286574487009126052014039875400692213007085004528710009603050538142060026005001");
     // game.setBoard("-".repeat(81));
     game.print();
     canvasBoard.draw();

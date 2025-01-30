@@ -16,7 +16,7 @@ const setCornerHouse = (game, rowStart, colStart, initalCount) => {
     for (let row = rowStart; row < rowStart + 3; row++) {
         for (let col = colStart; col < colStart + 3; col++) {
             const cellPosition = { x: row, y: col };
-            console.log("looking at", cellPosition);
+            // console.log("looking at", cellPosition);
             if (!game.getCell(cellPosition).value) {
                 const validValuesInCell = getValidValuesInCell(game, cellPosition);
                 let hasValueWithSingleInstance = false;
@@ -24,23 +24,23 @@ const setCornerHouse = (game, rowStart, colStart, initalCount) => {
                     // put -- :chen
                     const numberOfInstancesInHouse = --counter[value - 1];
                     if (numberOfInstancesInHouse === 0) {
-                        console.log("found value with single instance", value);
+                        // console.log("found value with single instance", value);
                         if (hasValueWithSingleInstance) {
-                            console.log("has two values with single instance", value);
+                            // console.log("has two values with single instance", value);
                             throw new Error("test1");
                         }
                         hasValueWithSingleInstance = true;
-                        console.log("(1) setting cell to", value);
+                        // console.log("(1) setting cell to", value);
                         game.setCell(cellPosition, value);
                     }
                 }
                 if (!hasValueWithSingleInstance) {
-                    console.log("no single instance value");
+                    // console.log("no single instance value");
                     const randomIndex = Math.floor(Math.random() * validValuesInCell.length);
                     if (validValuesInCell.length === 0) {
-                        console.log("no valid values for TODO ");
+                        // console.log("no valid values for TODO ");
                     }
-                    console.log("(1) setting cell to", validValuesInCell[randomIndex]);
+                    // console.log("(1) setting cell to", validValuesInCell[randomIndex]);
                     game.setCell(cellPosition, validValuesInCell[randomIndex]);
                 }
                 // look for something
@@ -67,24 +67,24 @@ const setCornerHouse = (game, rowStart, colStart, initalCount) => {
     }
 };
 const setCornerHouseWithRepeat = (game, rowStart, colStart, initalCount) => {
-    console.log("setCornerHouseWithRepeat", repeatCounter);
+    // console.log("setCornerHouseWithRepeat", repeatCounter);
     try {
         setCornerHouse(game, rowStart, colStart, initalCount);
     }
     catch (e) {
         repeatCounter++;
         if (repeatCounter < maxRepeat) {
-            console.log("failed to set corret house", initalCount);
+            // console.log("failed to set corret house", initalCount);
             // reset house and try again
             for (let i = rowStart; i < rowStart + 3; i++) {
                 for (let j = colStart; j < colStart + 3; j++) {
-                    game.setCell({ x: i, y: j }, null);
+                    game.setCell({ x: i, y: j }, 0);
                 }
             }
             setCornerHouseWithRepeat(game, rowStart, colStart, initalCount);
         }
         else {
-            console.log("max repeat reached");
+            // console.log("max repeat reached");
         }
     }
 };
@@ -106,7 +106,7 @@ const getValidValuesInCell = (game, cellPosition) => {
         x: Math.floor(cellPosition.x / 3),
         y: Math.floor(cellPosition.y / 3),
     };
-    console.log("housePos", housePos);
+    // console.log("housePos", housePos);
     const house = boardSetToExistingNumberArray(game.getHouse(housePos.x, housePos.y));
     let invalidNumbers = [];
     invalidNumbers = invalidNumbers.concat(row, column, house);
@@ -155,28 +155,28 @@ const fillBoard = (game) => __awaiter(void 0, void 0, void 0, function* () {
         const bottomHouse = game.getHouse(1, 2);
         const topHouseValues = boardSetToExistingNumberArray(topHouse);
         const bottomHouseValues = boardSetToExistingNumberArray(bottomHouse);
-        console.log("topHouseValues");
-        console.log(topHouseValues);
-        console.log("bottomHouseValues");
-        console.log(bottomHouseValues);
+        // console.log("topHouseValues");
+        // console.log(topHouseValues);
+        // console.log("bottomHouseValues");
+        // console.log(bottomHouseValues);
         // create base group, group of all numbers still not included in column 4
         const toDeductFromBaseGroup = boardSetToExistingNumberArray(game.getRow(row));
         let baseGroup = Array.from(set);
         baseGroup = baseGroup.filter((value) => !toDeductFromBaseGroup.includes(value));
-        console.log("baseGroup");
+        // console.log("baseGroup");
         console.log(baseGroup);
         // top group is base group with only numbers that have to be in top house
         let topGroup = baseGroup.filter((value) => bottomHouseValues.includes(value));
         let bottomGroup = baseGroup.filter((value) => topHouseValues.includes(value));
-        console.log("topGroup");
-        console.log(topGroup);
-        console.log("bottomGroup");
-        console.log(bottomGroup);
+        // console.log("topGroup");
+        // console.log(topGroup);
+        // console.log("bottomGroup");
+        // console.log(bottomGroup);
         let leftoverGroup = baseGroup
             .filter((v) => !topGroup.includes(v))
             .filter((v) => !bottomGroup.includes(v));
-        console.log("leftoverGroup");
-        console.log(leftoverGroup);
+        // console.log("leftoverGroup");
+        // console.log(leftoverGroup);
         // now add all leftover numbers randomly to top and
         // bottom group until they're both of length 3
         while (topGroup.length < 3) {
@@ -184,11 +184,11 @@ const fillBoard = (game) => __awaiter(void 0, void 0, void 0, function* () {
             leftoverGroup = newLeftOverGroup;
             topGroup.push(value);
         }
-        console.log("newTopGroup");
-        console.log(topGroup);
+        // console.log("newTopGroup");
+        // console.log(topGroup);
         bottomGroup = bottomGroup.concat(leftoverGroup);
-        console.log("newBottomGroup");
-        console.log(bottomGroup);
+        // console.log("newBottomGroup");
+        // console.log(bottomGroup);
         // inject top group to middle row of top house and vice-versa
         for (let i = 0; i < 3; i++) {
             const { value, arr } = getRandomCell(topGroup);
@@ -207,28 +207,28 @@ const fillBoard = (game) => __awaiter(void 0, void 0, void 0, function* () {
         const bottomHouse = game.getHouse(2, 1);
         const topHouseValues = boardSetToExistingNumberArray(topHouse);
         const bottomHouseValues = boardSetToExistingNumberArray(bottomHouse);
-        console.log("topHouseValues");
-        console.log(topHouseValues);
-        console.log("bottomHouseValues");
-        console.log(bottomHouseValues);
+        // console.log("topHouseValues");
+        // console.log(topHouseValues);
+        // console.log("bottomHouseValues");
+        // console.log(bottomHouseValues);
         // create base group, group of all numbers still not included in column 4
         const toDeductFromBaseGroup = boardSetToExistingNumberArray(game.getColumn(col));
         let baseGroup = Array.from(set);
         baseGroup = baseGroup.filter((value) => !toDeductFromBaseGroup.includes(value));
-        console.log("baseGroup");
-        console.log(baseGroup);
+        // console.log("baseGroup");
+        // console.log(baseGroup);
         // top group is base group with only numbers that have to be in top house
         let topGroup = baseGroup.filter((value) => bottomHouseValues.includes(value));
         let bottomGroup = baseGroup.filter((value) => topHouseValues.includes(value));
-        console.log("topGroup");
-        console.log(topGroup);
-        console.log("bottomGroup");
-        console.log(bottomGroup);
+        // console.log("topGroup");
+        // console.log(topGroup);
+        // console.log("bottomGroup");
+        // console.log(bottomGroup);
         let leftoverGroup = baseGroup
             .filter((v) => !topGroup.includes(v))
             .filter((v) => !bottomGroup.includes(v));
-        console.log("leftoverGroup");
-        console.log(leftoverGroup);
+        // console.log("leftoverGroup");
+        // console.log(leftoverGroup);
         // now add all leftover numbers randomly to top and
         // bottom group until they're both of length 3
         while (topGroup.length < 3) {
@@ -236,11 +236,11 @@ const fillBoard = (game) => __awaiter(void 0, void 0, void 0, function* () {
             leftoverGroup = newLeftOverGroup;
             topGroup.push(value);
         }
-        console.log("newTopGroup");
-        console.log(topGroup);
+        // console.log("newTopGroup");
+        // console.log(topGroup);
         bottomGroup = bottomGroup.concat(leftoverGroup);
-        console.log("newBottomGroup");
-        console.log(bottomGroup);
+        // console.log("newBottomGroup");
+        // console.log(bottomGroup);
         // inject top group to middle row of top house and vice-versa
         for (let i = 0; i < 3; i++) {
             const { value, arr } = getRandomCell(topGroup);
@@ -261,10 +261,10 @@ const fillBoard = (game) => __awaiter(void 0, void 0, void 0, function* () {
     // upper left corner
     // getValidValuesInCell(game, { x: 0, y: 0 });
     const validValuesInHouse = getValidValuesInHouse(game);
-    console.log("validValuesInHouse");
-    console.log(validValuesInHouse);
-    console.log("stage 3");
-    console.log("stage 3 for bottom left house");
+    // console.log("validValuesInHouse");
+    // console.log(validValuesInHouse);
+    // console.log("stage 3");
+    // console.log("stage 3 for bottom left house");
     setCornerHouseWithRepeat(game, 0, 0, 4);
     repeatCounter = 0;
     setCornerHouseWithRepeat(game, 6, 0, 3);
@@ -287,9 +287,7 @@ const algo = (game) => __awaiter(void 0, void 0, void 0, function* () {
     for (let i = 0; i < 50; i++) {
         const x = Math.floor(Math.random() * 9);
         const y = Math.floor(Math.random() * 9);
-        console.log("test");
-        console.log(x, y);
-        game.setCell({ x, y }, null);
+        game.setCell({ x, y }, 0);
     }
 });
 export { algo };
